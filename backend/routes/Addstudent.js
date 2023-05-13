@@ -38,8 +38,9 @@ router.get('/fetchstudent',fetchuser, async (req, res) => {
 
 
 router.post('/addstudent', fetchuser, [
-  body('firstname', 'Enter a valid title').isLength({ min: 3 }),
-  body('lastname', 'must be atleast 5 characters').isLength({ min: 4 }),], async (req, res) => {
+  body('firstname', 'Enter a valid title').isLength({ min: 1 }),
+  body('lastname', 'must be atleast 1 characters').isLength({ min: 1 }),], async (req, res) => {
+    let success=false;
       try {
 
         const { firstname,lastname, email, mobileno,collegeid} = req.body
@@ -47,14 +48,14 @@ router.post('/addstudent', fetchuser, [
           // If there are errors, return Bad request and the errors
           const errors = validationResult(req);
            if (!errors.isEmpty()) {
-              return res.status(400).json({ errors: errors.array() });
+              return res.status(200).json({success, errors: errors.array() });
           }
           const user = new Ajay({
             firstname, lastname, email,mobileno,collegeid, user: req.user1.id
           })
           const savedNote = await user.save()
-
-          res.json({message:"save data succesfully",savedNote})
+          success=true;
+          res.json({success,message:"save data succesfully",savedNote})
 
       } catch (error) {
           console.error(error.message);

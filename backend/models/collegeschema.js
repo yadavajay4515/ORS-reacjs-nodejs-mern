@@ -17,7 +17,7 @@ const collegedata = new Schema({
     phoneno:{
         type: String,
         required: true,
-        unique: true
+      
     },
     address:{
         type: String,
@@ -40,36 +40,3 @@ const collegedata = new Schema({
   
   module.exports =  mongoose.model('addcollege', collegedata);
  
-//  const Addstudent Schema mongoose
-
-//   const AddStudent = new Schema({
-//     firstname:{
-//         type: String,
-//         required: true
-//     },
-//     lastname:{
-//         type: String,
-//         required: true,
-//         unique: true
-//     },
-//     email:{
-//         type: String,
-//         required: true
-//     },
-//     mobileno:{
-//         type: String,
-//         required: true
-//     },
-//      collegeid:{
-//         type: String,
-//         required: true
-//     },
-//     date:{
-//         type: Date,
-//         default: Date.now
-//     },
-    
-//   });
-//      const ajay =mongoose.model('AdstudentData', AddStudent);
-//     //  export default ajay;
-//      module.exports=ajay

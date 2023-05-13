@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
   // }
   // console.log(msg);
   // res.json({errors:msg})
-
+let success=false;
   try {
     let user = await User.findOne({ email: req.body.email });
     
@@ -104,17 +104,17 @@ router.post(
       console.log(user);
       // console.log(user);
       if (!user) {
-        return res.status(400).json({
+        return res.status(200).json({
           success,
-          error: "Please try to login with correct credentials",
+          error: "email not match",
         });
       }
 
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        return res.status(400).json({
+        return res.status(200).json({
           success,
-          error: "Please try to login with correct credentials",
+          error: "password not match",
         });
       }
 
